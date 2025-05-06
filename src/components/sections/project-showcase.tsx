@@ -321,7 +321,8 @@ export default function GsapProjectsShowcase() {
 
                             <div className="project-links flex gap-4">
                                 {project.githubUrl && (
-                                    <Button asChild variant="outline" size="sm">
+                                    <Button asChild variant="outline" size="sm"
+                                            className="bg-primary/10 text-primary border-primary/20">
                                         <a
                                             href={project.githubUrl}
                                             target="_blank"
@@ -334,7 +335,7 @@ export default function GsapProjectsShowcase() {
                                     </Button>
                                 )}
                                 {project.liveUrl && (
-                                    <Button asChild size="sm">
+                                    <Button asChild size="sm" variant="ghost">
                                         <a
                                             href={project.liveUrl}
                                             target="_blank"

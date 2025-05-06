@@ -140,14 +140,16 @@ export default function HomePage() {
                 <AboutSection/>
 
                 {/* Skills Section with animation */}
-                <SkillsSection/>
+                {/*<SkillsSection/>*/}
 
-                <GsapSkillsTree/>
+                <motion.div>
+                    <GsapSkillsTree/>
+                </motion.div>
 
                 <GsapProjectsShowcase/>
 
                 {/* Projects Section with enhanced visuals */}
-                <ProjectsSection/>
+                {/*<ProjectsSection/>*/}
 
                 <LampContainer className="rounded-none">
                     <motion.h1
@@ -159,7 +161,7 @@ export default function HomePage() {
                             ease: "easeInOut",
                         }}
                         className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4
-                        font-bold bg-clip-text text-center text-4xl tracking-tight text-transparent md:text-6xl"
+                        font-bold bg-clip-text text-center text-3xl tracking-tight text-transparent md:text-5xl"
                     >
                         要看更多？
                         <p className="mt-4">

@@ -67,7 +67,6 @@ export default function PersonalitySection() {
 
     return (
         <section id="personality" ref={containerRef} className="relative min-h-screen py-24 md:py-32 overflow-hidden">
-            <div className="absolute inset-0 bg-neutral-50 dark:bg-neutral-950 z-0"/>
 
             {/* Background elements */}
             <div className="absolute inset-0 z-0 overflow-hidden">

@@ -8,12 +8,27 @@ import {TextPlugin} from "gsap/TextPlugin"
 import {Github, Mail, ExternalLink, Code, Heart, Coffee} from "lucide-react"
 import {Button} from "@/components/ui/button"
 import {useTheme} from "next-themes"
+import dynamic from "next/dynamic";
+
+const RandomItems = dynamic(() => (import('@/components/ui/random-items')), {
+    ssr: false,
+});
 
 export default function GsapPersonalIntro() {
     const containerRef = useRef<HTMLDivElement>(null)
     const textRef = useRef<HTMLDivElement>(null)
     const imageRef = useRef<HTMLDivElement>(null)
     const {theme, resolvedTheme} = useTheme()
+
+    const [isDark, setIsDark] = useState<boolean>(false)
+
+    useEffect(() => {
+        if (resolvedTheme === "dark") {
+            setIsDark(true)
+        } else {
+            setIsDark(false)
+        }
+    }, [resolvedTheme]);
 
     const {scrollYProgress} = useScroll({
         target: containerRef,
@@ -100,7 +115,7 @@ export default function GsapPersonalIntro() {
             // 确保清理所有 ScrollTrigger 实例
             ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
         };
-    }, [theme, resolvedTheme]);
+    }, [theme, resolvedTheme, isDark]);
 
     const words = ["全栈开发者", "设计者", "创造者"]
     const [currentWord, setCurrentWord] = useState(0)
@@ -217,10 +232,10 @@ export default function GsapPersonalIntro() {
                                 <img
                                     src="https://dogeoss.grtsinry43.com/img/author-removebg.png"
                                     alt="grtsinry43"
-                                    style={resolvedTheme === "dark" ? {filter: "brightness(0.8)"} : {}}
+                                    style={isDark ? {filter: "brightness(0.8)"} : {}}
                                     className="w-full h-auto"
                                 />
-                                {resolvedTheme === "dark" && (
+                                {isDark && (
                                     <div
                                         className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"/>
                                 )}
@@ -236,17 +251,7 @@ export default function GsapPersonalIntro() {
                                 className="shape absolute -bottom-8 -left-8 w-16 h-16 rounded-full bg-gradient-to-br from-emerald-500 to-green-500 shadow-lg"/>
                             <div
                                 className="shape absolute top-1/2 -right-12 w-10 h-10 rounded-md bg-gradient-to-br from-amber-500 to-orange-500 rotate-45 shadow-lg"/>
-                            {[...Array(10)].map((_, i) => (
-                                <div
-                                    key={i}
-                                    className="particle absolute w-3 h-3 rounded-full bg-primary/30"
-                                    style={{
-                                        top: `${20 + Math.random() * 60}%`,
-                                        left: `${Math.random() * 100}%`,
-                                        opacity: 0.3 + Math.random() * 0.7,
-                                    }}
-                                />
-                            ))}
+                            <RandomItems/>
                         </div>
                         <div
                             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10">

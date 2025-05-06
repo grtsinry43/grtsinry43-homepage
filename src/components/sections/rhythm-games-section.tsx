@@ -326,34 +326,6 @@ export default function GsapRhythmGamesSection() {
                     点击游戏卡片，体验互动音符动画效果
                 </motion.p>
 
-                {/* 图标展示 */}
-                <div className="flex flex-wrap justify-center gap-8 mb-16">
-                    <div className="icon-item flex flex-col items-center gap-2">
-                        <div className="p-4 rounded-full bg-blue-500/10">
-                            <Music className="h-8 w-8 text-blue-500"/>
-                        </div>
-                        <span className="text-sm font-medium">音乐</span>
-                    </div>
-                    <div className="icon-item flex flex-col items-center gap-2">
-                        <div className="p-4 rounded-full bg-purple-500/10">
-                            <Gamepad2 className="h-8 w-8 text-purple-500"/>
-                        </div>
-                        <span className="text-sm font-medium">游戏</span>
-                    </div>
-                    <div className="icon-item flex flex-col items-center gap-2">
-                        <div className="p-4 rounded-full bg-green-500/10">
-                            <Star className="h-8 w-8 text-green-500"/>
-                        </div>
-                        <span className="text-sm font-medium">技巧</span>
-                    </div>
-                    <div className="icon-item flex flex-col items-center gap-2">
-                        <div className="p-4 rounded-full bg-amber-500/10">
-                            <Trophy className="h-8 w-8 text-amber-500"/>
-                        </div>
-                        <span className="text-sm font-medium">成就</span>
-                    </div>
-                </div>
-
                 {/* 交互式音符动画画布 */}
                 <div className="relative h-[300px] mb-16">
                     <canvas ref={canvasRef} className="w-full h-full"/>
