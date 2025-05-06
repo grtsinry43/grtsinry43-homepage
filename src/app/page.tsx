@@ -18,6 +18,11 @@ import CreativeCanvas from "@/components/creative-canvas"
 import PersonalitySection from "@/components/sections/personality-section";
 import {LampContainer} from "@/components/ui/lamp-container";
 import CardSection from "@/components/sections/card-section";
+import GsapSkillsTree from "@/components/sections/skill-tree";
+import GsapProjectsShowcase from "@/components/sections/project-showcase";
+import GsapPersonalIntro from "@/components/sections/personal-intro";
+import GsapPhotographySection from "@/components/sections/photography-section";
+import GsapRhythmGamesSection from "@/components/sections/rhythm-games-section";
 
 export default function HomePage() {
     const {theme} = useTheme()
@@ -58,7 +63,7 @@ export default function HomePage() {
     }, [mouseX, mouseY])
 
     return (
-        <div className="min-h-screen bg-background overflow-hidden">
+        <div className="">
             {/* Progress indicator */}
             <motion.div className="fixed top-0 left-0 right-0 h-[1px] bg-primary z-[60] origin-left" style={{scaleX}}/>
 
@@ -99,16 +104,16 @@ export default function HomePage() {
                 </div>
             </header>
 
-            <main className="relative">
+            <main className="relative overflow-hidden">
 
-                <div className="relative w-full h-screen overflow-hidden">
+                <div className="relative w-full h-screen overflow-hidden flex items-center justify-center">
                     {/* Creative background canvas */}
                     <div className="absolute inset-0">
                         <CreativeCanvas mouseX={mouseXSpring} mouseY={mouseYSpring}/>
                     </div>
 
-                    {/* Hero Section with 3D animation */}
-                    <HeroSection/>
+                    {/* Hero Section with GSAP animation */}
+                    <GsapPersonalIntro/>
                 </div>
 
 
@@ -137,6 +142,10 @@ export default function HomePage() {
                 {/* Skills Section with animation */}
                 <SkillsSection/>
 
+                <GsapSkillsTree/>
+
+                <GsapProjectsShowcase/>
+
                 {/* Projects Section with enhanced visuals */}
                 <ProjectsSection/>
 
@@ -163,6 +172,12 @@ export default function HomePage() {
 
                 {/* Personality Section with animation */}
                 <PersonalitySection/>
+
+                {/*<GsapPersonalIntro/>*/}
+
+                <GsapPhotographySection/>
+
+                <GsapRhythmGamesSection/>
 
                 {/* Contact Section with glass morphism */}
                 <ContactSection/>
