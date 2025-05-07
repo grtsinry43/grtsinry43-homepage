@@ -23,6 +23,7 @@ import GsapProjectsShowcase from "@/components/sections/project-showcase";
 import GsapPersonalIntro from "@/components/sections/personal-intro";
 import GsapPhotographySection from "@/components/sections/photography-section";
 import GsapRhythmGamesSection from "@/components/sections/rhythm-games-section";
+import FinalSection from "@/components/sections/final-section";
 
 export default function HomePage() {
     const {theme} = useTheme()
@@ -183,6 +184,8 @@ export default function HomePage() {
 
                 {/* Contact Section with glass morphism */}
                 <ContactSection/>
+
+                <FinalSection/>
             </main>
 
             {/* Footer with subtle animation */}
