@@ -24,8 +24,10 @@ import GsapPersonalIntro from "@/components/sections/personal-intro";
 import GsapPhotographySection from "@/components/sections/photography-section";
 import GsapRhythmGamesSection from "@/components/sections/rhythm-games-section";
 import FinalSection from "@/components/sections/final-section";
+import {useTranslations} from 'next-intl';
 
 export default function HomePage() {
+    const t = useTranslations('HomePage');
     const {theme} = useTheme()
     const [scrolled, setScrolled] = useState(false)
     const {scrollYProgress} = useScroll()
@@ -82,7 +84,7 @@ export default function HomePage() {
                 >
                     <img className="w-12 h-12 mr-4 rounded-full"
                          src={"https://dogeoss.grtsinry43.com/img/author.jpeg"}/>
-                    <div>grtsinry43</div>
+                    <div>{t('greeting')}</div>
                 </motion.div>
             </motion.div>
 
@@ -96,8 +98,8 @@ export default function HomePage() {
                 <div className="container flex items-center justify-between h-16 px-4 mx-auto">
                     <motion.div initial={{opacity: 0, y: -20}} animate={{opacity: 1, y: 0}}
                                 transition={{duration: 0.5}}>
-                        <Link href="/" className="text-xl font-bold tracking-tight">
-                            grtsinry43
+                        <Link href="/public" className="text-xl font-bold tracking-tight">
+                            {t('title')}
                         </Link>
                     </motion.div>
 
@@ -130,10 +132,10 @@ export default function HomePage() {
                 {/* Horizontal scrolling text */}
                 <section className="py-20 overflow-hidden opacity-55">
                     <ParallaxText baseVelocity={-3}>
-                        Full Stack • Java • JavaScript • Kotlin • TypeScript • React • Next.js • Spring Boot
+                        {t('parallaxText1')}
                     </ParallaxText>
                     <ParallaxText baseVelocity={3}>
-                        Vue.js • Android • Jetpack Compose • WeChat Miniprogram • Arch Linux • 创新 • 探索 • 开发
+                        {t('parallaxText2')}
                     </ParallaxText>
                 </section>
 
@@ -164,9 +166,9 @@ export default function HomePage() {
                         className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4
                         font-bold bg-clip-text text-center text-3xl tracking-tight text-transparent md:text-5xl"
                     >
-                        要看更多？
+                        {t('moreToSee')}
                         <p className="mt-4">
-                            下面，继续看看我的个性和兴趣吧~
+                            {t('personalityAndInterests')}
                         </p>
                     </motion.h1>
                 </LampContainer>
@@ -198,8 +200,7 @@ export default function HomePage() {
                             whileInView={{opacity: 1}}
                             transition={{duration: 0.8}}
                         >
-                            <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} grtsinry43.
-                                保留所有权利。</p>
+                            <p className="text-sm text-muted-foreground">{t('footerRights', {year: new Date().getFullYear()})}</p>
                         </motion.div>
                         <motion.div
                             className="flex items-center space-x-6"
@@ -214,14 +215,14 @@ export default function HomePage() {
                                 className="text-muted-foreground hover:text-foreground transition-all duration-300 hover:scale-110"
                             >
                                 <Github className="h-5 w-5"/>
-                                <span className="sr-only">GitHub</span>
+                                <span className="sr-only">{t('srGitHub')}</span>
                             </a>
                             <a
                                 href="mailto:grtsinry43@outlook.com"
                                 className="text-muted-foreground hover:text-foreground transition-all duration-300 hover:scale-110"
                             >
                                 <Mail className="h-5 w-5"/>
-                                <span className="sr-only">Email</span>
+                                <span className="sr-only">{t('srEmail')}</span>
                             </a>
                             <a
                                 href="https://blog.grtsinry43.com"
@@ -230,7 +231,7 @@ export default function HomePage() {
                                 className="text-muted-foreground hover:text-foreground transition-all duration-300 hover:scale-110"
                             >
                                 <ExternalLink className="h-5 w-5"/>
-                                <span className="sr-only">Blog</span>
+                                <span className="sr-only">{t('srBlog')}</span>
                             </a>
                         </motion.div>
                     </div>
