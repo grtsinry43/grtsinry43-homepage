@@ -66,19 +66,19 @@ export default function PersonalitySection() {
     }
 
     return (
-        <section id="personality" ref={containerRef} className="relative min-h-screen py-24 md:py-32 overflow-hidden">
+        <section id="personality" ref={containerRef} className="relative min-h-screen py-24 md:py-32 overflow-hidden bg-neutral-950">
 
             {/* Background elements */}
             <div className="absolute inset-0 z-0 overflow-hidden">
                 <motion.div
-                    className="absolute top-1/3 right-1/4 w-64 h-64 rounded-full bg-purple-500/5 blur-3xl"
+                    className="absolute top-1/3 right-1/4 w-64 h-64 rounded-full bg-purple-900/30 blur-3xl"
                     style={{
                         y: useTransform(scrollYProgress, [0, 1], [0, -100]),
                         x: useTransform(scrollYProgress, [0, 1], [0, 50]),
                     }}
                 />
                 <motion.div
-                    className="absolute bottom-1/3 left-1/4 w-96 h-96 rounded-full bg-emerald-500/5 blur-3xl"
+                    className="absolute bottom-1/3 left-1/4 w-96 h-96 rounded-full bg-emerald-900/30 blur-3xl"
                     style={{
                         y: useTransform(scrollYProgress, [0, 1], [0, -150]),
                         x: useTransform(scrollYProgress, [0, 1], [0, -50]),
@@ -95,19 +95,19 @@ export default function PersonalitySection() {
                         viewport={{ once: true, amount: 0.3 }}
                         className="flex items-center justify-center space-x-2 mb-12"
                     >
-                        <div className="h-px w-12 bg-primary/60" />
-                        <h2 className="text-lg font-medium text-primary">我的性格</h2>
-                        <div className="h-px w-12 bg-primary/60" />
+                        <div className="h-px w-12 bg-blue-700/60" />
+                        <h2 className="text-lg font-medium text-blue-400">我的性格</h2>
+                        <div className="h-px w-12 bg-blue-700/60" />
                     </motion.div>
 
                     <motion.h3
-                        className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-16"
+                        className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-16 text-neutral-100"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                         viewport={{ once: true, amount: 0.3 }}
                     >
-                        你会好奇<span className="text-primary">我的性格</span>
+                        你会好奇<span className="text-blue-400">我的性格</span>
                     </motion.h3>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
@@ -116,7 +116,7 @@ export default function PersonalitySection() {
                                 variants={containerVariants}
                                 initial="hidden"
                                 animate={isInView ? "visible" : "hidden"}
-                                className="space-y-4 text-lg text-neutral-700 dark:text-neutral-300"
+                                className="space-y-4 text-lg text-neutral-200"
                             >
                                 <motion.p variants={itemVariants} custom={1}>
                                     我的性格大部分情况下不可能不会有固定的表现，如果中将需要量化评价的话，我属于 16
@@ -124,10 +124,10 @@ export default function PersonalitySection() {
                                     INFJ。
                                 </motion.p>
                                 <motion.p variants={itemVariants} custom={2}>
-                                    INFJ的特行者在迷雾中寻找光芒，坚持自己的理想和信念，希望能为这个世界带来一些改变。
+                                    在迷雾中寻找光芒，坚持自己的理想和信念，希望能为这个世界带来一些改变。
                                 </motion.p>
                                 <motion.p variants={itemVariants} custom={3}>
-                                    如果上面这样一段话评价 infj 人格：
+                                    如果用这样一段话评价 infj 人格：
                                 </motion.p>
                             </motion.div>
 
@@ -153,11 +153,11 @@ export default function PersonalitySection() {
                                 className="relative"
                             >
                                 <blockquote
-                                    className="relative z-10 rounded-2xl bg-gradient-to-r from-emerald-50 to-blue-50 dark:from-emerald-900/30 dark:to-blue-900/30 p-8 italic text-neutral-700 dark:text-neutral-200 border-l-4 border-blue-500 shadow-lg">
+                                    className="relative z-10 rounded-2xl bg-gradient-to-r from-emerald-950 to-blue-950 p-8 italic text-neutral-200 border-l-4 border-blue-700 shadow-lg">
                                     "明明拿了反派的成长剧本，却依旧想成为正道的光。"
                                 </blockquote>
                                 <motion.div
-                                    className="absolute top-0 right-0 -mt-4 -mr-4 h-24 w-24 rounded-full bg-gradient-to-r from-emerald-500/10 to-blue-500/10 blur-xl"
+                                    className="absolute top-0 right-0 -mt-4 -mr-4 h-24 w-24 rounded-full bg-gradient-to-r from-emerald-800/30 to-blue-800/30 blur-xl"
                                     animate={{
                                         scale: [1, 1.2, 1],
                                         opacity: [0.5, 0.8, 0.5],
@@ -169,7 +169,7 @@ export default function PersonalitySection() {
                                     }}
                                 />
                                 <motion.div
-                                    className="absolute bottom-0 left-0 -mb-4 -ml-4 h-24 w-24 rounded-full bg-gradient-to-r from-emerald-500/10 to-blue-500/10 blur-xl"
+                                    className="absolute bottom-0 left-0 -mb-4 -ml-4 h-24 w-24 rounded-full bg-gradient-to-r from-emerald-800/30 to-blue-800/30 blur-xl"
                                     animate={{
                                         scale: [1, 1.2, 1],
                                         opacity: [0.5, 0.8, 0.5],
@@ -188,7 +188,7 @@ export default function PersonalitySection() {
                                     initial={{opacity: 0, y: 20}}
                                     animate={isInView ? {opacity: 1, y: 0} : {}}
                                     transition={{duration: 0.6, delay: 0.7}}
-                                    className="text-xl font-bold mb-6"
+                                    className="text-xl font-bold mb-6 text-neutral-100"
                                 >
                                     INFJ 特质
                                 </motion.h4>
@@ -215,11 +215,11 @@ export default function PersonalitySection() {
                                                 x: 10,
                                                 transition: {duration: 0.2},
                                             }}
-                                            className="flex items-center p-4 rounded-xl bg-white dark:bg-neutral-900 shadow-sm border border-neutral-200 dark:border-neutral-800 transform-gpu"
+                                            className="flex items-center p-4 rounded-xl bg-neutral-900 shadow-sm border border-neutral-800 transform-gpu"
                                         >
                                             <div
                                                 className="h-3 w-3 rounded-full bg-gradient-to-r from-emerald-500 to-blue-500 mr-4"/>
-                                            <span className="text-neutral-700 dark:text-neutral-300">{trait}</span>
+                                            <span className="text-neutral-200">{trait}</span>
                                         </motion.div>
                                     ))}
                                 </div>
@@ -238,9 +238,9 @@ export default function PersonalitySection() {
                                         rotate: 0,
                                         transition: {duration: 0.3},
                                     }}
-                                    className="bg-white dark:bg-neutral-900 p-8 rounded-2xl border border-neutral-200 dark:border-neutral-800 shadow-lg transform-gpu"
+                                    className="bg-neutral-900 p-8 rounded-2xl border border-neutral-800 shadow-lg transform-gpu"
                                 >
-                                    <h4 className="text-xl font-bold mb-6 text-center">INFJ 性格雷达图</h4>
+                                    <h4 className="text-xl font-bold mb-6 text-center text-neutral-100">INFJ 性格雷达图</h4>
                                     <div className="aspect-square relative z-10">
                                         <svg viewBox="0 0 200 200" className="w-full h-full">
                                             <defs>
@@ -256,22 +256,22 @@ export default function PersonalitySection() {
                                                 </filter>
                                             </defs>
 
-                                            <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(100,116,139,0.2)"
+                                            <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(51,65,85,0.4)"
                                                     strokeWidth="1"/>
-                                            <circle cx="100" cy="100" r="60" fill="none" stroke="rgba(100,116,139,0.2)"
+                                            <circle cx="100" cy="100" r="60" fill="none" stroke="rgba(51,65,85,0.4)"
                                                     strokeWidth="1"/>
-                                            <circle cx="100" cy="100" r="40" fill="none" stroke="rgba(100,116,139,0.2)"
+                                            <circle cx="100" cy="100" r="40" fill="none" stroke="rgba(51,65,85,0.4)"
                                                     strokeWidth="1"/>
-                                            <circle cx="100" cy="100" r="20" fill="none" stroke="rgba(100,116,139,0.2)"
+                                            <circle cx="100" cy="100" r="20" fill="none" stroke="rgba(51,65,85,0.4)"
                                                     strokeWidth="1"/>
 
-                                            <line x1="100" y1="20" x2="100" y2="180" stroke="rgba(100,116,139,0.2)"
+                                            <line x1="100" y1="20" x2="100" y2="180" stroke="rgba(51,65,85,0.4)"
                                                   strokeWidth="1"/>
-                                            <line x1="20" y1="100" x2="180" y2="100" stroke="rgba(100,116,139,0.2)"
+                                            <line x1="20" y1="100" x2="180" y2="100" stroke="rgba(51,65,85,0.4)"
                                                   strokeWidth="1"/>
-                                            <line x1="37" y1="37" x2="163" y2="163" stroke="rgba(100,116,139,0.2)"
+                                            <line x1="37" y1="37" x2="163" y2="163" stroke="rgba(51,65,85,0.4)"
                                                   strokeWidth="1"/>
-                                            <line x1="37" y1="163" x2="163" y2="37" stroke="rgba(100,116,139,0.2)"
+                                            <line x1="37" y1="163" x2="163" y2="37" stroke="rgba(51,65,85,0.4)"
                                                   strokeWidth="1"/>
 
                                             <motion.polygon
@@ -295,32 +295,31 @@ export default function PersonalitySection() {
                                                 filter="url(#personalityGlow)"
                                             />
 
-                                            <text x="100" y="15" textAnchor="middle" fill="currentColor" fontSize="8">
+                                            <text x="100" y="15" textAnchor="middle" fill="#e0e7ef" fontSize="8">
                                                 理想主义
                                             </text>
-                                            <text x="185" y="100" textAnchor="start" fill="currentColor" fontSize="8">
+                                            <text x="185" y="100" textAnchor="start" fill="#e0e7ef" fontSize="8">
                                                 创造力
                                             </text>
-                                            <text x="100" y="190" textAnchor="middle" fill="currentColor" fontSize="8">
+                                            <text x="100" y="190" textAnchor="middle" fill="#e0e7ef" fontSize="8">
                                                 同理心
                                             </text>
-                                            <text x="15" y="100" textAnchor="end" fill="currentColor" fontSize="8">
+                                            <text x="15" y="100" textAnchor="end" fill="#e0e7ef" fontSize="8">
                                                 内省
                                             </text>
-                                            <text x="37" y="37" textAnchor="middle" fill="currentColor" fontSize="8">
+                                            <text x="37" y="37" textAnchor="middle" fill="#e0e7ef" fontSize="8">
                                                 洞察力
                                             </text>
-                                            <text x="37" y="163" textAnchor="middle" fill="currentColor" fontSize="8">
+                                            <text x="37" y="163" textAnchor="middle" fill="#e0e7ef" fontSize="8">
                                                 坚持
                                             </text>
-                                            <text x="163" y="37" textAnchor="middle" fill="currentColor" fontSize="8">
+                                            <text x="163" y="37" textAnchor="middle" fill="#e0e7ef" fontSize="8">
                                                 完美主义
                                             </text>
-                                            <text x="163" y="163" textAnchor="middle" fill="currentColor" fontSize="8">
+                                            <text x="163" y="163" textAnchor="middle" fill="#e0e7ef" fontSize="8">
                                                 敏感
                                             </text>
 
-                                            {/* Animated points */}
                                             {[
                                                 {cx: 100, cy: 30},
                                                 {cx: 150, cy: 45},
@@ -374,24 +373,24 @@ export default function PersonalitySection() {
                                         scale: 1.05,
                                         transition: {duration: 0.3},
                                     }}
-                                    className="bg-white dark:bg-neutral-900 p-8 rounded-2xl border border-neutral-200 dark:border-neutral-800 shadow-lg"
+                                    className="bg-neutral-900 p-8 rounded-2xl border border-neutral-800 shadow-lg"
                                 >
-                                    <h4 className="text-xl font-bold mb-6">INFJ 分布</h4>
+                                    <h4 className="text-xl font-bold mb-6 text-neutral-100">INFJ 分布</h4>
                                     <div className="relative pt-8">
                                         <div
-                                            className="absolute top-0 left-0 w-full flex justify-between text-xs text-neutral-500">
+                                            className="absolute top-0 left-0 w-full flex justify-between text-xs text-neutral-400">
                                             <span>0%</span>
                                             <span>1%</span>
                                             <span>2%</span>
                                             <span>3%</span>
                                         </div>
                                         <div
-                                            className="h-16 bg-gradient-to-r from-emerald-50 to-blue-50 dark:from-emerald-900/30 dark:to-blue-900/30 rounded-lg relative">
+                                            className="h-16 bg-gradient-to-r from-emerald-950 to-blue-950 rounded-lg relative">
                                             <motion.div
                                                 initial={{width: 0}}
                                                 animate={isInView ? {width: "16%"} : {}}
                                                 transition={{duration: 1.5, delay: 1.2, ease: "easeOut"}}
-                                                className="absolute top-0 left-0 h-full bg-gradient-to-r from-emerald-500 to-blue-500 rounded-lg opacity-70"
+                                                className="absolute top-0 left-0 h-full bg-gradient-to-r from-emerald-600 to-blue-700 rounded-lg opacity-80"
                                             />
                                             <motion.div
                                                 initial={{opacity: 0, scale: 0}}
@@ -408,7 +407,7 @@ export default function PersonalitySection() {
                                                         }
                                                         : {}
                                                 }
-                                                className="absolute top-1/2 left-[16%] -translate-x-1/2 -translate-y-1/2 h-8 w-8 rounded-full bg-white dark:bg-neutral-800 border-2 border-emerald-500 flex items-center justify-center text-xs font-bold text-emerald-600 dark:text-emerald-400"
+                                                className="absolute top-1/2 left-[16%] -translate-x-1/2 -translate-y-1/2 h-8 w-8 rounded-full bg-neutral-900 border-2 border-emerald-500 flex items-center justify-center text-xs font-bold text-emerald-400"
                                             >
                                                 1.5%
                                             </motion.div>
@@ -430,8 +429,8 @@ export default function PersonalitySection() {
                                                 className="absolute top-full left-[16%] -translate-x-1/2 mt-2 text-center"
                                             >
                                                 <span
-                                                    className="text-sm font-medium text-neutral-700 dark:text-neutral-300">INFJ</span>
-                                                <p className="text-xs text-neutral-500">全球人口比例</p>
+                                                    className="text-sm font-medium text-neutral-200">INFJ</span>
+                                                <p className="text-xs text-neutral-400">全球人口比例</p>
                                             </motion.div>
                                         </div>
                                     </div>
@@ -444,4 +443,3 @@ export default function PersonalitySection() {
         </section>
     )
 }
-

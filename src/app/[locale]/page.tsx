@@ -149,7 +149,9 @@ export default function HomePage() {
                     <GsapSkillsTree/>
                 </motion.div>
 
-                <GsapProjectsShowcase/>
+                <motion.div>
+                    <GsapProjectsShowcase/>
+                </motion.div>
 
                 {/* Projects Section with enhanced visuals */}
                 {/*<ProjectsSection/>*/}

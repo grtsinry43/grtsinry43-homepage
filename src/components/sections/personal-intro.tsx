@@ -242,7 +242,7 @@ export default function GsapPersonalIntro() {
                             />
                             <AnimatedGradientText
                                 text="grtsinry43"
-                                className="text-7xl font-bold tracking-tight"
+                                className="text-7xl font-bold tracking-tight pb-2"
                                 gradient="from-blue-600 via-purple-600 to-blue-600"
                                 delay={0.5}
                             />
@@ -265,10 +265,11 @@ export default function GsapPersonalIntro() {
                             </h4>
                         </div>
                         <p className="text-lg text-muted-foreground">
-                            我专注于构建优雅、高效的应用程序，无论是 Web 应用还是 Android 应用。
-                            我相信良好的用户体验和干净的代码同样重要。
+                            我是一名全栈开发者，热衷于创造出色的用户体验和高效的代码。
+                            <br/>
+                            喜欢探索新技术，分享见解，合作学习
                         </p>
-                        <div className="flex flex-wrap gap-4 items-center">
+                        <div className="flex flex-wrap gap-4 items-center pb-4">
                             <motion.div
                                 className="flex items-center gap-2 icon-item"
                                 whileHover={{scale: 1.05, x: 5}}

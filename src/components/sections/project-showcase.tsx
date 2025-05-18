@@ -6,16 +6,31 @@ import {Github, ExternalLink, ArrowRight} from "lucide-react"
 import {Button} from "@/components/ui/button"
 import {Badge} from "@/components/ui/badge"
 import {useTheme} from "next-themes"
+import {client} from "@/sanity/client";
+import {SanityDocument} from "next-sanity"
+import imageUrlBuilder from "@sanity/image-url"
+import type {SanityImageSource} from "@sanity/image-url/lib/types/types"
 
 interface Project {
-    id: number
-    title: string
+    _id: number
+    name: string
     description: string
-    tags: string[]
-    image: string
+    techStack: string
+    cover: any // Sanity image object
     githubUrl?: string
-    liveUrl?: string
+    deployUrl?: string
 }
+
+const PROJECTS_QUERY = `*[_type == "project"]|order(publishedAt desc)[0...12]
+{_id,name,description,githubUrl,deployUrl,progress,techStack,publishedAt,cover}`;
+
+const options = {next: {revalidate: 30}};
+
+const {projectId, dataset} = client.config()
+const urlFor = (source: SanityImageSource) =>
+    projectId && dataset
+        ? imageUrlBuilder({projectId, dataset}).image(source)
+        : null
 
 export default function GsapProjectsShowcase() {
     const containerRef = useRef<HTMLDivElement>(null)
@@ -23,45 +38,15 @@ export default function GsapProjectsShowcase() {
     const [containerWidth, setContainerWidth] = useState(0)
     const [isInView, setIsInView] = useState(false)
     const {theme} = useTheme()
+    const [projects, setProjects] = useState<Project[]>([])
 
-    // Project data
-    const projects: Project[] = [
-        {
-            id: 1,
-            title: "grtblog",
-            description:
-                "个人博客站点，一站式快速解决方案—一套源，扩展性强，快速部署的博客框架，使用 Nextjs + SpringBoot 构建，致力于轻松搭建个性化你的博客站点",
-            tags: ["React", "Next.js", "Spring Boot", "Umi.js", "Socket.io", "Radix UI"],
-            image: "/placeholder.svg?height=600&width=800",
-            githubUrl: "https://github.com/grtsinry43/grtblog",
-            liveUrl: "https://grtblog.js.org",
-        },
-        {
-            id: 2,
-            title: "csu-dynamic-youth",
-            description: "途有青，去追山！学校官微毕业节的微信网页程序，统计参与次数与时长，生成排行榜，完成完成打卡",
-            tags: ["微信小程序", "Vue.js", "微信API"],
-            image: "/placeholder.svg?height=600&width=800",
-            githubUrl: "#",
-        },
-        {
-            id: 3,
-            title: "Portfolio Website",
-            description: "个人作品集网站，展示我的项目和技能，使用 Next.js 和 Framer Motion 构建",
-            tags: ["Next.js", "Framer Motion", "Tailwind CSS", "TypeScript"],
-            image: "/placeholder.svg?height=600&width=800",
-            githubUrl: "#",
-            liveUrl: "#",
-        },
-        {
-            id: 4,
-            title: "AI Chat Application",
-            description: "基于人工智能的聊天应用，支持多种语言和自然语言处理",
-            tags: ["React", "Node.js", "OpenAI API", "WebSockets"],
-            image: "/placeholder.svg?height=600&width=800",
-            githubUrl: "#",
-        },
-    ]
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await client.fetch<Project[]>(PROJECTS_QUERY, {}, options);
+            setProjects(data);
+        };
+        fetchData();
+    }, []);
 
     // 检测元素是否在视口中
     useEffect(() => {
@@ -88,8 +73,7 @@ export default function GsapProjectsShowcase() {
     // 计算水平滚动容器的宽度
     useEffect(() => {
         if (horizontalRef.current) {
-            // 计算所有项目卡片的总宽度 + 间距
-            const totalWidth = projects.length * 600 + (projects.length - 1) * 40
+            const totalWidth = projects.length * 600 + (projects.length - 1) * 40 + 300 + 40 + 800
             setContainerWidth(totalWidth)
         }
     }, [projects.length])
@@ -193,7 +177,6 @@ export default function GsapProjectsShowcase() {
                             },
                         )
                     }
-
                     if (tags) {
                         gsap.fromTo(
                             tags,
@@ -212,7 +195,6 @@ export default function GsapProjectsShowcase() {
                             },
                         )
                     }
-
                     if (links) {
                         gsap.fromTo(
                             links,
@@ -234,7 +216,6 @@ export default function GsapProjectsShowcase() {
                 })
 
                 return () => {
-                    // 清理动画
                     scrollTween.kill()
                     ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
                 }
@@ -269,9 +250,9 @@ export default function GsapProjectsShowcase() {
                         transition={{duration: 0.8, delay: 0.2}}
                         viewport={{once: true, amount: 0.3}}
                     >
-            <span className="bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
-              以往项目展示
-            </span>
+                        <span className="bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
+                            以往项目展示
+                        </span>
                     </motion.h3>
 
                     <motion.p
@@ -281,7 +262,7 @@ export default function GsapProjectsShowcase() {
                         transition={{duration: 0.8, delay: 0.3}}
                         viewport={{once: true, amount: 0.3}}
                     >
-                        向下滚动探索我的项目作品集 - 体验视差滚动效果
+                        向下滚动探索我的项目作品集，包含了多个领域的探索~
                     </motion.p>
                 </div>
             </div>
@@ -291,71 +272,76 @@ export default function GsapProjectsShowcase() {
                 ref={horizontalRef}
                 className="absolute top-0 left-0 h-screen w-fit flex items-center gap-10 pl-[calc(50vw-300px)] pr-[100px] pt-[250px]"
             >
-                {projects.map((project, index) => (
-                    <div
-                        key={project.id}
-                        className="project-card flex-shrink-0 w-[600px] h-[500px] bg-card/90 backdrop-blur-sm rounded-2xl overflow-hidden shadow-xl border border-border/50 relative"
-                    >
-                        <div className="project-image absolute inset-0 z-0">
-                            <div
-                                className="absolute inset-0 bg-gradient-to-t from-card via-card/80 to-transparent z-10"/>
-                            <img
-                                src={project.image || "/placeholder.svg"}
-                                alt={project.title}
-                                className="w-full h-full object-cover"
-                            />
+                {projects.map((project, index) => {
+                    const coverUrl = project.cover
+                        ? urlFor(project.cover)?.width(600).height(500).url()
+                        : "/placeholder.svg"
+                    return (
+                        <div
+                            key={project._id}
+                            className="project-card flex-shrink-0 w-[600px] h-[500px] bg-card/90 backdrop-blur-sm rounded-2xl overflow-hidden shadow-xl border border-border/50 relative"
+                        >
+                            <div className="project-image absolute inset-0 z-0">
+                                <div
+                                    className="absolute inset-0 bg-gradient-to-t from-card via-card/80 to-transparent z-10"/>
+                                <img
+                                    src={coverUrl}
+                                    alt={project.name}
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+
+                            <div className="relative z-20 flex flex-col justify-end h-full p-8">
+                                <h4 className="project-title text-3xl font-bold mb-4">{project.name}</h4>
+                                <p className="project-desc text-lg text-muted-foreground mb-6">{project.description}</p>
+
+                                <div className="project-tags flex flex-wrap gap-2 mb-6">
+                                    {project.techStack.split(',').map((tag: string) => (
+                                        <Badge key={tag} variant="outline"
+                                               className="bg-primary/10 text-primary border-primary/20">
+                                            {tag}
+                                        </Badge>
+                                    ))}
+                                </div>
+
+                                <div className="project-links flex gap-4">
+                                    {project.githubUrl && (
+                                        <Button asChild variant="outline" size="sm"
+                                                className="bg-primary/10 text-primary border-primary/20">
+                                            <a
+                                                href={project.githubUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-2"
+                                            >
+                                                <Github className="h-4 w-4"/>
+                                                GitHub
+                                            </a>
+                                        </Button>
+                                    )}
+                                    {project.deployUrl && (
+                                        <Button asChild size="sm" variant="ghost">
+                                            <a
+                                                href={project.deployUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-2"
+                                            >
+                                                <ExternalLink className="h-4 w-4"/>
+                                                查看项目
+                                            </a>
+                                        </Button>
+                                    )}
+                                </div>
+
+                                {/* 项目序号 */}
+                                <div className="absolute top-8 right-8 text-8xl font-bold text-primary/10">
+                                    {String(index + 1).padStart(2, "0")}
+                                </div>
+                            </div>
                         </div>
-
-                        <div className="relative z-20 flex flex-col justify-end h-full p-8">
-                            <h4 className="project-title text-3xl font-bold mb-4">{project.title}</h4>
-                            <p className="project-desc text-lg text-muted-foreground mb-6">{project.description}</p>
-
-                            <div className="project-tags flex flex-wrap gap-2 mb-6">
-                                {project.tags.map((tag) => (
-                                    <Badge key={tag} variant="outline"
-                                           className="bg-primary/10 text-primary border-primary/20">
-                                        {tag}
-                                    </Badge>
-                                ))}
-                            </div>
-
-                            <div className="project-links flex gap-4">
-                                {project.githubUrl && (
-                                    <Button asChild variant="outline" size="sm"
-                                            className="bg-primary/10 text-primary border-primary/20">
-                                        <a
-                                            href={project.githubUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-center gap-2"
-                                        >
-                                            <Github className="h-4 w-4"/>
-                                            GitHub
-                                        </a>
-                                    </Button>
-                                )}
-                                {project.liveUrl && (
-                                    <Button asChild size="sm" variant="ghost">
-                                        <a
-                                            href={project.liveUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-center gap-2"
-                                        >
-                                            <ExternalLink className="h-4 w-4"/>
-                                            查看项目
-                                        </a>
-                                    </Button>
-                                )}
-                            </div>
-
-                            {/* 项目序号 */}
-                            <div className="absolute top-8 right-8 text-8xl font-bold text-primary/10">
-                                {String(index + 1).padStart(2, "0")}
-                            </div>
-                        </div>
-                    </div>
-                ))}
+                    )
+                })}
 
                 {/* 结束提示 */}
                 <div className="flex-shrink-0 w-[300px] h-[500px] flex items-center justify-center">
@@ -363,7 +349,7 @@ export default function GsapProjectsShowcase() {
                         <p className="text-muted-foreground mb-4">想了解更多项目？</p>
                         <Button asChild>
                             <a href="#contact" className="flex items-center gap-2">
-                                联系我 <ArrowRight className="h-4 w-4"/>
+                                转到项目页面 <ArrowRight className="h-4 w-4"/>
                             </a>
                         </Button>
                     </div>

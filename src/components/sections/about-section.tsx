@@ -74,12 +74,12 @@ export default function AboutSection() {
 
                         <div className="space-y-4 text-lg text-muted-foreground">
                             <p>我是一名全栈开发者，专注于 Java/JavaScript 开发，目前正在转向 Kotlin/TypeScript
-                                全栈开发。</p>
+                                全栈开发，对于 Web 与跨平台有自己的见解。</p>
                             <p>
                                 我热爱创建优雅、高效的应用程序，无论是 Web 应用还是 Android
-                                应用。我相信良好的用户体验和干净的代码同样重要。
+                                应用。对我来说良好的用户体验和干净的代码同样重要。
                             </p>
-                            <p>目前我可能位于中国湖南长沙，与中南大学有关联。我活跃于开源社区，并在个人博客上分享技术文章。</p>
+                            <p>目前我活跃于开源社区，并在个人博客上分享技术文章。</p>
                         </div>
 
                         <div className="flex gap-3">
@@ -128,10 +128,16 @@ export default function AboutSection() {
                                                 <SkillBadge name="React"/>
                                                 <SkillBadge name="Next.js"/>
                                                 <SkillBadge name="Vue.js"/>
-                                                <SkillBadge name="Spring Boot"/>
+                                                <SkillBadge name="Nuxt.js"/>
                                                 <SkillBadge name="TypeScript"/>
                                                 <SkillBadge name="JavaScript"/>
                                                 <SkillBadge name="Kotlin"/>
+                                                <SkillBadge name="Python"/>
+                                                <SkillBadge name="Jupyter Notebook"/>
+                                                <SkillBadge name="FastAPI"/>
+                                                <SkillBadge name="PyTorch"/>
+                                                <SkillBadge name="Spring Boot"/>
+                                                <SkillBadge name="Ktor"/>
                                                 <SkillBadge name="Java"/>
                                                 <SkillBadge name="Jetpack Compose"/>
                                             </div>
@@ -140,9 +146,13 @@ export default function AboutSection() {
                                         <div>
                                             <p className="font-mono text-sm text-primary mb-2">{"// 开发工具"}</p>
                                             <div className="flex flex-wrap gap-2">
+                                                <SkillBadge name="WebStorm"/>
                                                 <SkillBadge name="VS Code"/>
                                                 <SkillBadge name="IntelliJ IDEA"/>
                                                 <SkillBadge name="Android Studio"/>
+                                                <SkillBadge name="RustRover"/>
+                                                <SkillBadge name="PyCharm"/>
+                                                <SkillBadge name="CLion"/>
                                                 <SkillBadge name="Git"/>
                                                 <SkillBadge name="Figma"/>
                                                 <SkillBadge name="Docker"/>
